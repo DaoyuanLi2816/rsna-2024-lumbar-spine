@@ -190,6 +190,13 @@ Our team achieved a silver medal in the RSNA 2024 Lumbar Spine Degenerative Clas
 - LICENSE
 - README.md
 ```
+## Setup
+
+```bash
+git clone https://github.com/DaoyuanLi2816/Kaggle-RSNA-2024-Lumbar-Spine-Degenerative-Classification-Silver-Medal.git
+cd Kaggle-RSNA-2024-Lumbar-Spine-Degenerative-Classification-Silver-Medal
+pip install -r requirements.txt
+```
 ## Author
 
 Daoyuan Li - [Kaggle Profile](https://www.kaggle.com/distiller)
