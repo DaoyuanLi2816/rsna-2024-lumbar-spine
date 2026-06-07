@@ -139,7 +139,7 @@ Using 5-fold cross-validation, we train a separate YOLOv8 model for each degener
 
 ### Solution Summary
 
-Our team achieved a silver medal in the RSNA 2024 Lumbar Spine Degenerative Classification competition, with a public score of 0.43 and a private score of 0.49. We implemented a multi-model approach with YOLOv8 and developed custom data preprocessing and target detection processes, optimizing predictions through confidence aggregation. Our solution demonstrates potential clinical applicability for assisting radiologists in diagnostics.
+Our team achieved a silver medal in the RSNA 2024 Lumbar Spine Degenerative Classification competition, with a public score of 0.43 and a private score of 0.49. We implemented a multi-model approach with YOLOv8 and developed custom data preprocessing and object detection processes, optimizing predictions through confidence aggregation. Our solution demonstrates potential clinical applicability for assisting radiologists in diagnostics.
 
 **Highlights:**
 - Developed a YOLOv8-based framework for classifying three degenerative spine disease patterns
