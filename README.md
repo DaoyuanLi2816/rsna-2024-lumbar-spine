@@ -13,8 +13,8 @@ The goal of this competition is to develop models to assist in the detection and
 ### Classification of Five Lumbar Spine Degenerative Diseases:
 1. Left Neural Foraminal Narrowing
 2. Right Neural Foraminal Narrowing
-3. Left Facet Joint Narrowing
-4. Right Facet Joint Narrowing
+3. Left Subarticular Stenosis
+4. Right Subarticular Stenosis
 5. Spinal Canal Stenosis
 
 For each imaging study in the dataset, severity scores (Normal/Mild, Moderate, or Severe) are provided for the five degenerative conditions at the L1/L2, L2/L3, L3/L4, L4/L5, and L5/S1 disc levels.
@@ -29,7 +29,7 @@ For each imaging study in the dataset, severity scores (Normal/Mild, Moderate, o
   - **study_id**
   - **series_id**: Unique identifier for the image series.
   - **instance_number**: The image sequence number within the 3D stack.
-  - **condition**: Three primary conditions – spinal canal stenosis, foraminal narrowing, and facet joint narrowing. The latter two consider each side of the spine.
+  - **condition**: Three primary conditions – spinal canal stenosis, foraminal narrowing, and subarticular stenosis. The latter two consider each side of the spine.
   - **level**: Relevant vertebrae, such as l3_l4.
   - **[x/y]**: x/y coordinates for the center of the labeled area.
 
@@ -70,13 +70,13 @@ Our solution involves building a multi-model approach with **YOLOv8** to detect 
 
 - **Neural Foraminal Narrowing (NFN)**: Model predicts 5 levels * 2 sides (left/right) * 3 conditions = 30 labels.
 - **Spinal Canal Stenosis (SCS)**: Model predicts 5 levels * 3 conditions = 15 labels.
-- **Facet Joint Narrowing (SS)**: Model predicts 5 levels * 2 sides (left/right) * 3 conditions = 30 labels.
+- **Subarticular Stenosis (SS)**: Model predicts 5 levels * 2 sides (left/right) * 3 conditions = 30 labels.
 
 This yields a total of 75 bounding box classes (30 + 15 + 30). These are aggregated by taking the maximum value within each condition_level grouping to obtain the final predictions at the study level.
 
 ### Data Preprocessing
 
-During data preprocessing, we address three distinct lumbar spine degenerative patterns: left/right neural foraminal narrowing, spinal canal stenosis, and left/right facet joint narrowing. The preprocessing steps are as follows:
+During data preprocessing, we address three distinct lumbar spine degenerative patterns: left/right neural foraminal narrowing, spinal canal stenosis, and left/right subarticular stenosis. The preprocessing steps are as follows:
 
 1. **Data Loading & Merging**:
    - Load data from various CSV files, including `train.csv`, `train_label_coordinates.csv`, and `train_series_descriptions.csv`, containing image labels, coordinates, and sequence descriptions.
@@ -105,7 +105,7 @@ Using 5-fold cross-validation, we train a separate YOLOv8 model for each degener
 
 ### Parameter Variations by Disease Pattern:
 
-| Parameter                | NFN (Neural Foraminal Narrowing) | SCS (Spinal Canal Stenosis) | SS (Facet Joint Narrowing) |
+| Parameter                | NFN (Neural Foraminal Narrowing) | SCS (Spinal Canal Stenosis) | SS (Subarticular Stenosis) |
 |--------------------------|-----------------------------------|-----------------------------|-----------------------------|
 | Model Weight File        | yolov8m.pt                       | yolov8s.pt                  | yolov8s.pt                  |
 | Class Loss Weight (cls)  | 0.5                              | 1.0                         | 0.5                         |
