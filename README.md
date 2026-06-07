@@ -72,7 +72,7 @@ Our solution involves building a multi-model approach with **YOLOv8** to detect 
 - **Spinal Canal Stenosis (SCS)**: Model predicts 5 levels * 3 conditions = 15 labels.
 - **Facet Joint Narrowing (SS)**: Model predicts 5 levels * 2 sides (left/right) * 3 conditions = 30 labels.
 
-This yields a total of 75 bounding box classes. These are aggregated by taking the maximum value within each condition_level grouping to obtain the final predictions at the study level.
+This yields a total of 75 bounding box classes (30 + 15 + 30). These are aggregated by taking the maximum value within each condition_level grouping to obtain the final predictions at the study level.
 
 ### Data Preprocessing
 
