@@ -197,6 +197,13 @@ git clone https://github.com/DaoyuanLi2816/Kaggle-RSNA-2024-Lumbar-Spine-Degener
 cd Kaggle-RSNA-2024-Lumbar-Spine-Degenerative-Classification-Silver-Medal
 pip install -r requirements.txt
 ```
+## Usage
+
+Run the notebooks in the following order:
+
+1. `code/gen_data_*.ipynb` - preprocess the DICOM images and generate YOLO-format datasets for each condition.
+2. `code/train_yolo_*.ipynb` - train a YOLOv8 model per condition using 5-fold cross-validation.
+3. `code/inference.ipynb` - run inference with the trained models and assemble the submission file.
 ## Author
 
 Daoyuan Li - [Kaggle Profile](https://www.kaggle.com/distiller)
