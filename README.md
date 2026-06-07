@@ -10,6 +10,18 @@ Our team achieved a [Silver Medal](https://www.kaggle.com/certification/competit
 
 ![Daoyuan Li - RSNA 2024 Lumbar Spine](./Daoyuan%20Li%20-%20RSNA%202024%20Lumbar%20Spine%20Degenerative%20Classification.png)
 
+## Table of Contents
+
+- [Competition Overview](#competition-overview)
+- [Data Files](#data-files)
+- [Solution Overview](#solution-overview)
+- [Training the YOLOv8 Model](#training-the-yolov8-model)
+- [Inference and Submission](#inference-and-submission)
+- [Repository Structure](#repository-structure)
+- [Setup](#setup)
+- [Usage](#usage)
+- [License](#license)
+- [Author](#author)
 ## Competition Overview
 
 The goal of this competition is to develop models to assist in the detection and classification of degenerative spine diseases using lumbar spine MRI images. Participants created models that simulated the radiologist's diagnostic process for assessing spine conditions.
