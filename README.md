@@ -8,7 +8,7 @@ Our team achieved a [Silver Medal](https://www.kaggle.com/certification/competit
 
 ## Competition Overview
 
-The goal of this competition is to develop models to assist in the detection and classification of degenerative spine diseases using lumbar spine MRI images. Participants created models that simulated the radiologist's diagnostic process for assessing spine conditions. 
+The goal of this competition is to develop models to assist in the detection and classification of degenerative spine diseases using lumbar spine MRI images. Participants created models that simulated the radiologist's diagnostic process for assessing spine conditions.
 
 ### Classification of Five Lumbar Spine Degenerative Diseases:
 1. Left Neural Foraminal Narrowing
@@ -24,7 +24,7 @@ For each imaging study in the dataset, severity scores (Normal/Mild, Moderate, o
 - **train.csv**: Labels for the training set.
   - **study_id**: Unique identifier for each study, which may include multiple image series.
   - **[condition]_[level]**: Target labels, such as spinal_canal_stenosis_l1_l2, with severity levels Normal/Mild, Moderate, or Severe. Some entries may have missing labels.
-  
+
 - **train_label_coordinates.csv**
   - **study_id**
   - **series_id**: Unique identifier for the image series.
@@ -32,7 +32,7 @@ For each imaging study in the dataset, severity scores (Normal/Mild, Moderate, o
   - **condition**: Three primary conditions – spinal canal stenosis, foraminal narrowing, and facet joint narrowing. The latter two consider each side of the spine.
   - **level**: Relevant vertebrae, such as l3_l4.
   - **[x/y]**: x/y coordinates for the center of the labeled area.
-  
+
 - **sample_submission.csv**
   - **row_id**: Combination of study_id, condition, and level, e.g., 12345_spinal_canal_stenosis_l3_l4.
   - **[normal_mild/moderate/severe]**: Three prediction columns.
@@ -52,7 +52,7 @@ The submission evaluation uses the mean weighted log loss, along with an any_sev
   - Normal/Mild: 1
   - Moderate: 2
   - Severe: 4
-  
+
 For each row ID in the test set, you must predict the probability for each severity level. The submission file should contain a header and be in the following format:
 ```plaintext
 row_id,normal_mild,moderate,severe
@@ -79,7 +79,7 @@ This yields a total of 75 bounding box classes (30 + 15 + 30). These are aggrega
 During data preprocessing, we address three distinct lumbar spine degenerative patterns: left/right neural foraminal narrowing, spinal canal stenosis, and left/right facet joint narrowing. The preprocessing steps are as follows:
 
 1. **Data Loading & Merging**:
-   - Load data from various CSV files, including `train.csv`, `train_label_coordinates.csv`, and `train_series_descriptions.csv`, containing image labels, coordinates, and sequence descriptions. 
+   - Load data from various CSV files, including `train.csv`, `train_label_coordinates.csv`, and `train_series_descriptions.csv`, containing image labels, coordinates, and sequence descriptions.
    - Additionally, load the 5-fold cross-validation split file `5folds.csv` for model training and validation.
 
 2. **Extract Conditions & Levels**:
@@ -89,7 +89,7 @@ During data preprocessing, we address three distinct lumbar spine degenerative p
    - Merge the data above to create a structured label DataFrame containing `study_id`, `condition`, `level`, and `label`, making it easier to convert into the model input format.
 
 4. **DICOM Image Processing & YOLO Format Generation**:
-   - Read `.dcm` MRI images using the `pydicom` library, standardize the pixel values to the 0-255 range, and convert them to RGB. 
+   - Read `.dcm` MRI images using the `pydicom` library, standardize the pixel values to the 0-255 range, and convert them to RGB.
    - Convert image labels to YOLO bounding box format, generating `.txt` files with the class ID, center coordinates, bounding box width, and height.
 
 5. **Train/Validation Split & Data Output**:
