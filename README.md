@@ -1,14 +1,21 @@
-# RSNA 2024 Lumbar Spine Degenerative Classification Solution
+<p align="center">
+  <img src="https://raw.githubusercontent.com/DaoyuanLi2816/rsna-2024-lumbar-spine/main/docs/banner.svg" alt="RSNA 2024 — lumbar spine degenerative classification with a three-track YOLOv8 pipeline (detect, classify, grade severity); Kaggle silver medal." width="880">
+</p>
+
+<div align="center">
 
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
 ![Model](https://img.shields.io/badge/Model-YOLOv8-00FFFF)
-![Kaggle](https://img.shields.io/badge/Kaggle-Silver%20Medal-C0C0C0)
+[![Kaggle](https://img.shields.io/badge/Kaggle-Silver%20Medal-C0C0C0)](https://www.kaggle.com/certification/competitions/distiller/rsna-2024-lumbar-spine-degenerative-classification)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+</div>
 
 This solution was developed for the [RSNA 2024 Lumbar Spine Degenerative Classification](https://www.kaggle.com/competitions/rsna-2024-lumbar-spine-degenerative-classification/overview) competition on Kaggle, where participants were challenged to create models to detect and classify degenerative spine conditions based on lumbar spine MRI images. The task required building a model capable of predicting five different degenerative spine conditions and their severity levels across multiple disc levels. By simulating the diagnostic process of a radiologist, our model aims to enhance the accuracy and efficiency of lumbar spine assessments.
 
 Our team achieved a [Silver Medal](https://www.kaggle.com/certification/competitions/distiller/rsna-2024-lumbar-spine-degenerative-classification), with a public score of **0.43** and a private score of **0.49**. Our solution showcased the potential for using deep learning models, specifically YOLOv8, to classify lumbar spine conditions with high accuracy, contributing to the potential clinical utility of AI in radiological diagnostics. 🥈
 
-![Daoyuan Li - RSNA 2024 Lumbar Spine](./rsna-2024-lumbar-spine-certificate.png)
+![Daoyuan Li - RSNA 2024 Lumbar Spine](https://raw.githubusercontent.com/DaoyuanLi2816/rsna-2024-lumbar-spine/main/rsna-2024-lumbar-spine-certificate.png)
 
 ## Table of Contents
 
@@ -193,8 +200,8 @@ Our team achieved a silver medal in the RSNA 2024 Lumbar Spine Degenerative Clas
 ## Setup
 
 ```bash
-git clone https://github.com/DaoyuanLi2816/Kaggle-RSNA-2024-Lumbar-Spine-Degenerative-Classification-Silver-Medal.git
-cd Kaggle-RSNA-2024-Lumbar-Spine-Degenerative-Classification-Silver-Medal
+git clone https://github.com/DaoyuanLi2816/rsna-2024-lumbar-spine.git
+cd rsna-2024-lumbar-spine
 pip install -r requirements.txt
 ```
 ## Usage
@@ -216,7 +223,7 @@ If you find this solution helpful, please consider linking back to this reposito
   author       = {Daoyuan Li},
   title        = {RSNA 2024 Lumbar Spine Degenerative Classification (Silver Medal Solution)},
   year         = {2024},
-  howpublished = {https://github.com/DaoyuanLi2816/Kaggle-RSNA-2024-Lumbar-Spine-Degenerative-Classification-Silver-Medal}
+  howpublished = {https://github.com/DaoyuanLi2816/rsna-2024-lumbar-spine}
 }
 ```
 ## Author
