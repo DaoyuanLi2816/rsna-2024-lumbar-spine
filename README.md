@@ -211,6 +211,12 @@ Run the notebooks in the following order:
 1. `code/gen_data_*.ipynb` - preprocess the DICOM images and generate YOLO-format datasets for each condition.
 2. `code/train_yolo_*.ipynb` - train a YOLOv8 model per condition using 5-fold cross-validation.
 3. `code/inference.ipynb` - run inference with the trained models and assemble the submission file.
+
+> **Note on paths:** these notebooks were originally run inside Kaggle's notebook environment and a separate GPU training workstation, so several paths are historical/environment-specific and will need to point at your own setup before rerunning:
+> - `/kaggle/input/rsna-2024-lumbar-spine-degenerative-classification/...` and `/kaggle/input/lsdc-fold-split/5folds.csv` in `gen_data_*.ipynb`/`inference.ipynb` - replace with your local copy of the [competition data](https://www.kaggle.com/competitions/rsna-2024-lumbar-spine-degenerative-classification/data) (the fold split itself is included in this repo at `dataset/5folds.csv`).
+> - `path: /workspace/RSNA-LSDC/yolo/kaggle_dataset/...` in the `train_yolo_*.ipynb` YOLO data YAMLs - point this at the `data_fold*` directory produced by the corresponding `gen_data_*.ipynb`, and note that `gen_data_*.ipynb` writes the validation split to `images/val` while the YAML `val:`/`test:` keys expect `images/valid` - rename one to match the other.
+> - `/kaggle/input/yolo-model/*.pt` (`SCS_WEIGHTS`/`NFN_WEIGHTS`/`SS_WEIGHTS`) and `IMG_DIR = '/images'` in `inference.ipynb` - point at your own trained weights (from step 2) and a writable output directory.
+
 ## License
 
 This project is released under the terms of the [LICENSE](./LICENSE) file included in this repository.
