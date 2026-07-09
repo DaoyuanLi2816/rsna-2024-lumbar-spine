@@ -6,3 +6,4 @@ matplotlib
 pydicom
 scikit-learn
 ultralytics
+tqdm
