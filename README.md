@@ -13,7 +13,7 @@
 
 This solution was developed for the [RSNA 2024 Lumbar Spine Degenerative Classification](https://www.kaggle.com/competitions/rsna-2024-lumbar-spine-degenerative-classification/overview) competition on Kaggle, where participants were challenged to create models to detect and classify degenerative spine conditions based on lumbar spine MRI images. The task required building a model capable of predicting five different degenerative spine conditions and their severity levels across multiple disc levels. By simulating the diagnostic process of a radiologist, our model aims to enhance the accuracy and efficiency of lumbar spine assessments.
 
-Our team achieved a [Silver Medal](https://www.kaggle.com/certification/competitions/distiller/rsna-2024-lumbar-spine-degenerative-classification), with a public score of **0.43** and a private score of **0.49**. Our solution showcased the potential for using deep learning models, specifically YOLOv8, to classify lumbar spine conditions with high accuracy, contributing to the potential clinical utility of AI in radiological diagnostics. 🥈
+This solution placed **67th of 1,874 teams** and earned a [Silver Medal](https://www.kaggle.com/certification/competitions/distiller/rsna-2024-lumbar-spine-degenerative-classification), with a public score of **0.43** and a private score of **0.49** (mean weighted log loss — lower is better). It applies YOLOv8-based deep learning to classify lumbar spine conditions, pointing toward the potential clinical utility of AI-assisted radiological diagnostics. 🥈
 
 ![Daoyuan Li - RSNA 2024 Lumbar Spine](https://raw.githubusercontent.com/DaoyuanLi2816/rsna-2024-lumbar-spine/main/rsna-2024-lumbar-spine-certificate.png)
 
@@ -28,7 +28,9 @@ Our team achieved a [Silver Medal](https://www.kaggle.com/certification/competit
 - [Setup](#setup)
 - [Usage](#usage)
 - [License](#license)
+- [Citation](#citation)
 - [Author](#author)
+
 ## Competition Overview
 
 The goal of this competition is to develop models to assist in the detection and classification of degenerative spine diseases using lumbar spine MRI images. Participants created models that simulated the radiologist's diagnostic process for assessing spine conditions.
@@ -89,13 +91,13 @@ In rare cases where the lowest vertebrae are not visible in the image, you still
 
 ## Solution Overview
 
-Our solution involves building a multi-model approach with **YOLOv8** to detect and classify lumbar spine degenerative conditions, predicting the level and condition boundaries simultaneously.
+Our solution builds a multi-model approach with **YOLOv8** — one model per degenerative condition (NFN, SCS, SS) — where each bounding-box class jointly encodes the affected level and severity, so a single detection yields both the finding's location and its severity classification.
 
-- **Neural Foraminal Narrowing (NFN)**: Model predicts 5 levels * 2 sides (left/right) * 3 conditions = 30 labels.
-- **Spinal Canal Stenosis (SCS)**: Model predicts 5 levels * 3 conditions = 15 labels.
-- **Subarticular Stenosis (SS)**: Model predicts 5 levels * 2 sides (left/right) * 3 conditions = 30 labels.
+- **Neural Foraminal Narrowing (NFN)**: Model predicts 5 levels * 2 sides (left/right) * 3 severity levels = 30 labels.
+- **Spinal Canal Stenosis (SCS)**: Model predicts 5 levels * 3 severity levels = 15 labels.
+- **Subarticular Stenosis (SS)**: Model predicts 5 levels * 2 sides (left/right) * 3 severity levels = 30 labels.
 
-This yields a total of 75 bounding box classes (30 + 15 + 30). These are aggregated by taking the maximum value within each condition_level grouping to obtain the final predictions at the study level.
+This yields a total of 75 bounding box classes (30 + 15 + 30). These are aggregated by taking the maximum value within each condition_level_severity grouping to obtain the final predictions at the study level.
 
 ### Data Preprocessing
 
@@ -162,23 +164,12 @@ Using 5-fold cross-validation, we train a separate YOLOv8 model for each degener
 
 ### Solution Summary
 
-Our team achieved a silver medal in the RSNA 2024 Lumbar Spine Degenerative Classification competition, with a public score of 0.43 and a private score of 0.49. We implemented a multi-model approach with YOLOv8 and developed custom data preprocessing and object detection processes, optimizing predictions through confidence aggregation. Our solution demonstrates potential clinical applicability for assisting radiologists in diagnostics.
+We implemented a multi-model YOLOv8 approach with a custom DICOM-to-YOLO preprocessing pipeline and a confidence-aggregation step for the final predictions.
 
 **Highlights:**
 - Developed a YOLOv8-based framework for classifying three degenerative spine disease patterns
-- Designed a unique data preprocessing pipeline for DICOM image handling and YOLO format conversion
-- Implemented a bounding box prediction aggregation method to enhance robustness across MRI sequences
-
-**Technical Expertise:**
-- Proficient in deep learning frameworks like PyTorch and YOLOv8
-- Experienced in computer vision techniques for medical imaging data
-- Skilled in efficient data processing and model optimization
-
-**Achievements:**
-- RSNA 2024 Lumbar Spine Degenerative Classification competition silver medal
-- Public score: 0.43, Private score: 0.49, showcasing strong generalization capability
-- Solution holds potential clinical value for aiding radiologists in diagnostics
-
+- Designed a data preprocessing pipeline for DICOM image handling and YOLO format conversion
+- Implemented a bounding box prediction aggregation method to combine predictions across MRI sequences
 
 ## Repository Structure
 
@@ -194,9 +185,14 @@ Our team achieved a silver medal in the RSNA 2024 Lumbar Spine Degenerative Clas
   - inference.ipynb       # Run inference and assemble the submission
 - dataset/
   - 5folds.csv            # 5-fold cross-validation split
+- docs/
+  - banner.svg            # README hero banner
+- rsna-2024-lumbar-spine-certificate.png  # Kaggle silver-medal certificate
+- requirements.txt
 - LICENSE
 - README.md
 ```
+
 ## Setup
 
 ```bash
